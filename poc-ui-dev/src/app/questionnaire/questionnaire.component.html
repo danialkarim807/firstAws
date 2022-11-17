@@ -1,0 +1,266 @@
+<div class="main-container" dir="rtl">
+  <div class="progress-bar-container">
+    <span class="progress-bar">
+      <div class="progress" [style.width]="progress + '%'"></div>
+    </span>
+  </div>
+
+  <div class="main-q-container">
+    <h2 class="h2-title">{{ questionnaire?.name }}</h2>
+    <div
+      class="section"
+      *ngIf="questionnaire && !questionnaireCompleted; else completed"
+    >
+      <div class="s-name" *ngIf="questionnaire.sections[sectionIndex]?.name">
+        {{ questionnaire.sections[sectionIndex]?.name }}
+      </div>
+      <div
+        class="s-direction"
+        *ngIf="questionnaire.sections[sectionIndex]?.instructions"
+      >
+        {{ questionnaire.sections[sectionIndex].instructions }}
+      </div>
+
+      <div class="question">
+        <div
+          *ngIf="
+            questionnaire.sections[sectionIndex]?.questions[
+              questionIndexInSection
+            ]?.instructions
+          "
+          class="q-instructions"
+        >
+          {{
+            questionnaire.sections[sectionIndex]?.questions[
+              questionIndexInSection
+            ]?.instructions
+          }}
+        </div>
+        <label class="q-question">
+          {{
+            questionnaire.sections[sectionIndex]?.questions[
+              questionIndexInSection
+            ]?.text
+          }}
+        </label>
+
+        <ng-container
+          [ngSwitch]="
+            questionnaire.sections[sectionIndex].questions[
+              questionIndexInSection
+            ].type
+          "
+        >
+          <!-- question type - MARKING -->
+          <div
+            *ngSwitchCase="'marking'"
+            style="
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+            "
+          >
+            <div style="width: 100%; max-width: 900px" class="body-area">
+              <div class="view-description front-view">
+                <div class="view-text view-side-text" style="left: 15%">
+                  ימין
+                </div>
+                <div
+                  class="view-text front"
+                  style="font-size: clamp(1.15rem, 2.2vw, 27px)"
+                >
+                  מבט קדמי
+                </div>
+                <div class="view-text view-side-text" style="left: 75%">
+                  שמאל
+                </div>
+              </div>
+              <div class="view-description rear-view">
+                <div class="view-text view-side-text" style="left: 75%">
+                  ימין
+                </div>
+                <div
+                  class="view-text rear"
+                  style="font-size: clamp(1.15rem, 2.2vw, 27px)"
+                >
+                  מבט אחורי
+                </div>
+                <div class="view-text view-side-text" style="left: 15%">
+                  שמאל
+                </div>
+              </div>
+              <img
+                src="../../assets/illustrations/kindpng_2477163.png"
+                alt=""
+              />
+
+              <div
+                *ngFor="let ans of bpi_marking_options"
+                [style.top]="bodyPositions[ans].position.top"
+                [style.left]="bodyPositions[ans].position.left"
+                [style.transform]="
+                  'rotate(' + bodyPositions[ans].position.rotation + 'deg)'
+                "
+                [style.width]="bodyPositions[ans].size.width"
+                [style.height]="bodyPositions[ans].size.height"
+                [style.border-radius]="bodyPositions[ans].size.radius"
+                [ngClass]="isSelected(ans) ? 'selected' : 'not-selected'"
+                (click)="toggleOption(ans)"
+                class="spot"
+              ></div>
+            </div>
+            <button
+              class="clickable next-question-btn"
+              (click)="addMarkingSelectionToAnswerArray()"
+            >
+              הבא
+            </button>
+          </div>
+
+          <!-- question type - SCALE -->
+          <div *ngSwitchCase="'scale'" style="flex: 1; margin-top: 5%">
+            <mat-radio-group
+              class="answers example-radio-group"
+              #answerss
+              [(ngModel)]="currentAnswer"
+              (change)="onSelect($event) && answerss.blur()"
+            >
+              <mat-radio-button
+                *ngFor="
+                  let a of questionnaire.sections[sectionIndex]?.questions[
+                    questionIndexInSection
+                  ]?.answers
+                "
+                [value]="a"
+              >
+                {{ a }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <!-- question type - TEXT -->
+          <div *ngSwitchCase="'text'">
+            <div class="text-answer">
+              <input
+                type="text"
+                name=""
+                #textAnswer
+                [(ngModel)]="currentAnswer"
+              />
+            </div>
+            <button
+              (click)="onAnswer(textAnswer.value)"
+              class="next-question-btn"
+            >
+              שאלה הבאה
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <ng-template #completed>
+      <div
+        style="
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <div class="questionnaire-completed" *ngIf="questionnaireCompleted">
+          סיימת את השאלון בהצלחה!
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="q-nav">
+    <button
+      class="clickable"
+      (click)="goToPrevQuestion()"
+      [disabled]="questionIndex === 0"
+    >
+      לשאלה הקודמת
+    </button>
+    <button
+      class="clickable"
+      (click)="sendQuestionnaire()"
+      [disabled]="!questionnaireCompleted"
+    >
+      שלח
+    </button>
+  </div>
+  <!-- <div class="main-container" dir="rtl">
+  <div class="progress-bar-container">
+    <span class="progress-bar">
+      <div class="progress" [style.width]="progress + '%'"></div>
+    </span>
+  </div>
+  <div class="main-q-container">
+    <h2 class="h2-title">{{ name }}</h2>
+    <div
+      class="section"
+      *ngIf="questionnaire && !questionnaireCompleted; else completed"
+    >
+      <div class="s-direction" *ngIf="questionnaire[sectionIndex]?.directions">
+        {{ questionnaire[sectionIndex].directions }}
+      </div>
+      <div class="question">
+        <label class="q-question">
+          {{
+            questionnaire[sectionIndex]?.questions[questionIndexInSection]
+              ?.question
+          }}
+        </label>
+        <div class="q-direction">
+          {{
+            questionnaire[sectionIndex]?.questions[questionIndexInSection]
+              ?.directions
+          }}
+        </div>
+        <mat-radio-group
+          class="answers example-radio-group"
+          #answerss
+          [(ngModel)]="selectedValue"
+          (change)="onAnswerSelection($event)"
+        >
+          <mat-radio-button
+            class="example-radio-btn"
+            *ngFor="
+              let a of questionnaire[sectionIndex]?.questions[
+                questionIndexInSection
+              ]?.answers
+            "
+            [value]="a"
+          >
+            {{ a }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button
+        class="clickable"
+        (click)="goToPrevQuestion()"
+        [disabled]="questionIndex === 0"
+      >
+        לשאלה הקודמת
+      </button>
+      <button
+        class="clickable"
+        (click)="sendQuestionnaire()"
+        [disabled]="!questionnaireCompleted"
+      >
+        שלח
+      </button>
+    </div>
+    <ng-template #completed>
+      <div class="questionnaire-completed" *ngIf="questionnaireCompleted">
+        סיימת את השאלון בהצלחה!
+      </div>
+    </ng-template>
+  </div>
+</div> -->
+</div>

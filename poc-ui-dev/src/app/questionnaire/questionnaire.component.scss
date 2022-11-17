@@ -1,0 +1,220 @@
+:host {
+  height: 100%;
+}
+.main-container {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  // direction: rtl;
+  margin: 0 auto;
+  // padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0 0 10px 10px;
+  font-family: var(--main-font-family);
+  background-color: rgb(184, 184, 184);
+  .main-q-container {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    .questionnaire-completed {
+      text-align: center;
+      font-size: 2em;
+    }
+  }
+  .progress-bar-container {
+    display: flex;
+    .precent-progress {
+      width: 10%;
+      text-align: center;
+      font-size: 1em;
+    }
+    .progress-bar {
+      flex: 1;
+      opacity: 0.7;
+      padding: 2px;
+      .progress {
+        height: 100%;
+        height: 5px;
+        background-color: var(--accent-color);
+        // box-shadow: 0px 0px 3px purple;
+      }
+    }
+  }
+  .h2-title {
+    text-align: center;
+  }
+  .section {
+    flex: 1;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    .s-name {
+      text-align: center;
+    }
+    .s-direction {
+      text-align: start;
+    }
+    .question {
+      // height: 100%;
+      padding-top: 10px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .q-instructions {
+        font-size: 0.9em;
+      }
+      .q-question {
+        font-size: 1.3em;
+      }
+      .body-area {
+        position: absolute;
+        /* border: 1px solid #8f8f8f; */
+        width: 450px;
+        position: relative;
+        .view-description {
+          position: absolute;
+          top: -10%;
+          width: 49%;
+          height: 110%;
+          border: 1px solid;
+          border-radius: 12vmin;
+          background-color: #645d771f;
+          display: flex;
+          justify-content: center;
+          .view-text {
+            position: absolute;
+          }
+          .rear {
+            font-family: var(--main-bold-font-family);
+          }
+          .front {
+            font-family: var(--main-bold-font-family);
+          }
+          .view-side-text {
+            top: 20%;
+            left: 0%;
+          }
+        }
+        .front-view {
+          left: -1%;
+        }
+        .rear-view {
+          left: 52%;
+        }
+        .body-directions {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgb(153, 179, 111);
+        }
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+        .spot {
+          border-radius: 50%;
+          padding: 2px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          position: absolute;
+        }
+        .selected {
+          background-color: #a757579a;
+        }
+        .not-selected {
+          background-color: #e1bcbc9a;
+          border: 1px solid #d69f9f9a;
+        }
+      }
+      .text-answer {
+        background-color: #ffffff55;
+        border-radius: 5px 5px 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        input {
+          width: clamp(20vw, 200px, 50vw);
+          height: 35px;
+          padding: 5px 15px;
+          text-align: center;
+        }
+        // textarea {
+        //   display: none;
+        // }
+      }
+
+      .next-question-btn {
+        background-color: var(--secondary-complementry-color);
+        padding: 10px;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 100px;
+        border-radius: 0 0 5px 5px;
+        text-align: center;
+      }
+
+      .next-question-btn:hover {
+        background-color: #9b9894;
+      }
+    }
+  }
+  ::ng-deep .mat-radio-label-content {
+    padding-right: 8px;
+  }
+  .example-radio-group {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(5px, 3%, 20px);
+    .mat-radio-label-content {
+      padding-right: 8px;
+    }
+  }
+
+  .q-nav {
+    display: flex;
+    justify-content: space-between;
+    justify-self: end;
+    margin: 15px;
+    button {
+      background-color: var(--accent-color);
+      border-radius: 5px;
+      padding: 10px;
+      color: #e4e1dcdc;
+    }
+    button:disabled {
+      background-color: var(--accent-color);
+      opacity: 0.7;
+    }
+  }
+}
+:host ::ng-deep .mat-radio-container {
+  height: 40px;
+  width: 40px;
+}
+:host ::ng-deep .mat-radio-outer-circle {
+  height: 40px;
+  width: 40px;
+}
+:host ::ng-deep .mat-radio-inner-circle {
+  height: 40px;
+  width: 40px;
+}
+:host ::ng-deep .mat-radio-button .mat-radio-ripple {
+  height: 80px; /*double of your required circle radius*/
+  width: 80px; /*double of your required circle radius*/
+  left: calc(50% - 40px); /*'10px'-same as your required circle radius*/
+  top: calc(50% - 40px); /*'10px'-same as your required circle radius*/
+}

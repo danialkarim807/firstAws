@@ -1,0 +1,74 @@
+<div class="container" [ngSwitch]="card.sensor">
+  <ng-container *ngSwitchCase="'ECG'">
+    <div class="top-container">
+      <h3>
+        {{ card.sensor }}
+      </h3>
+      <div class="measurement-info-button clickable">!</div>
+    </div>
+    <div class="middle-container">
+      <span class="material-symbols-outlined clickable"> bar_chart </span>
+    </div>
+    <div class="bottom-container" style="justify-content: flex-start">
+      <div class="card-info statistic">
+        <span *ngFor="let info of card.info">{{ info.statistic }}:</span>
+      </div>
+      <div class="card-info data">
+        <span *ngFor="let info of card.info">
+          {{ info.data }}
+          <span *ngIf="card.unit">
+            {{ card.unit[0] }}
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="bottom-container">
+      <div class="card-info statistic">{{ card.standardDescriptionWord }}:</div>
+      <div class="card-info data">None</div>
+    </div>
+  </ng-container>
+
+  <!-- <ng-container *ngSwitchCase="'Pedometer'">1 </ng-container> -->
+
+  <ng-container *ngSwitchDefault>
+    <div class="top-container">
+      <h3>
+        {{ card.sensor }}
+      </h3>
+      <div class="measurement-info-button clickable">!</div>
+    </div>
+    <div class="middle-container">
+      <span class="material-symbols-outlined clickable"> bar_chart </span>
+    </div>
+    <div class="current-measurement">
+      <div class="measurement">
+        {{ card.info[3]?.data || card.normalValue }}
+        <span *ngIf="card.unit && card.info[3]">{{ card.unit[0] }}</span>
+      </div>
+      <div class="standard-description-word">
+        {{ card.standardDescriptionWord }}
+        <span *ngIf="card.sensor == 'Pedometer'" style="color: black">
+          - {{ card.normalValue }}
+        </span>
+      </div>
+    </div>
+    <div class="bottom-container">
+      <!-- <div class="bottom-container" *ngIf="card.sensor != 'Pedometer'"> -->
+      <div class="card-info statistic">
+        <span *ngFor="let info of card.info; let i = index">
+          <span *ngIf="i < 3">{{ info.statistic }}:</span>
+        </span>
+      </div>
+      <div class="card-info data">
+        <span *ngFor="let info of card.info; let i = index">
+          <span *ngIf="i < 3"
+            >{{ info.data }}
+            <span *ngIf="card.unit">
+              {{ card.unit[0] }}
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </ng-container>
+</div>

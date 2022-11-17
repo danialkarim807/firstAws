@@ -1,0 +1,15 @@
+<h2 class="h2-title" *ngIf="title">{{ title }}</h2>
+<div class="container">
+  <ng-container *ngFor="let cq of completedQuestionnairs">
+    <app-completed-questionnair
+      [card]="card"
+      [numberOfCards]="cards.length"
+    ></app-completed-questionnair>
+  </ng-container>
+  <!-- <div *ngFor="let card of cards">
+    <app-info-card *ngIf="card.bottom" [card]="card"></app-info-card>
+  </div>
+  <div *ngFor="let card of cards">
+    <app-info-card *ngIf="card.bottom" [card]="card"></app-info-card>
+  </div> -->
+</div>

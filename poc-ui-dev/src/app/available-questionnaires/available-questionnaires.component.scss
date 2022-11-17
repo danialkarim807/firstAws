@@ -1,0 +1,35 @@
+ul {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  gap: 5px;
+  color: var(--secondary-complementry-color);
+  font-family: var(--main-font-family);
+  font-size: clamp(12px, 1vw, 35px);
+  // width: clamp(50%, 50%, 50%);
+  // min-width: 50%;
+  width: fit-content;
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: var(--accent-color);
+
+    .questionnaire-list-text {
+      // width: clamp(200px, 30vw, 400px);
+      // width: 15vw;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+  }
+  li:hover {
+    background-color: var(--secondary-complementry-color);
+    color: var(--main-color);
+  }
+}

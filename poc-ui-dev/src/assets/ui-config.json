@@ -1,0 +1,59 @@
+{
+  "sensors": [
+    {
+      "name": "ECG",
+      "type": "ecg",
+      "info": ["PR", "QT", "QTc", "TR", "ABNORMALITIES"]
+    },
+    {
+      "name": "GSR",
+      "type": "default",
+      "info": ["Current", "Min", "Max", "Avg"]
+    },
+    {
+      "name": "HRV",
+      "type": "default",
+      "info": ["Current", "Min", "Max", "Avg"]
+    },
+    {
+      "name": "Heart rate",
+      "type": "default",
+      "info": ["Current", "Min", "Max", "Avg"]
+    },
+    {
+      "name": "Blood Pressure",
+      "type": "default",
+      "info": ["Current", "Min", "Max", "Avg"]
+    },
+    {
+      "name": "SPO2",
+      "type": "default",
+      "info": ["Current", "Min", "Max", "Avg"]
+    },
+    {
+      "name": "Temperature",
+      "type": "default",
+      "info": ["Current", "Min", "Max", "Avg"]
+    },
+    {
+      "name": "Pedometer",
+      "type": "goal",
+      "info": ["steps", "Goal"]
+    },
+    {
+      "name": "Stess Level",
+      "type": "goal",
+      "info": ["steps", "Goal"]
+    },
+    {
+      "name": "Sleep",
+      "type": "goal",
+      "info": ["Goal"]
+    },
+    {
+      "name": "Wellness Score",
+      "type": "default",
+      "info": ["Current", "Min", "Max", "Avg"]
+    }
+  ]
+}

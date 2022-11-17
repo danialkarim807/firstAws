@@ -1,0 +1,59 @@
+<div class="outer-container">
+  <div class="container">
+    <h2 class="h2-title">{{ isLoginMode ? "Login" : "Sign Up" }}</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="email@example.com"
+          formControlName="email"
+        />
+        <mat-error
+          *ngIf="
+            !loginForm.get('email').valid && loginForm.get('email').touched
+          "
+          >{{ getErrorMessage() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button
+        class="form-button"
+        type="submit"
+        class="clickable form-button"
+        [disabled]="!loginForm.valid"
+      >
+        {{ isLoginMode ? "Login" : "Sign Up" }}
+      </button>
+
+      <!-- <p class="error login-error">{{ errorMsg }}</p> -->
+    </form>
+
+    <button
+      mat-button
+      color="primary"
+      class="clickable"
+      (click)="onSwitchMode()"
+    >
+      To {{ switchTarget }}
+    </button>
+  </div>
+</div>

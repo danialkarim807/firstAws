@@ -1,0 +1,14 @@
+.user-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+ul {
+  padding: 10px;
+  border: 1px solid black;
+  margin-right: 50px;
+  li {
+    border: 1px solid black;
+    padding: 10px 5px;
+  }
+}

@@ -1,0 +1,209 @@
+Api docs
+--------------
+
+prerequisites:
+
+	Nodejs 17.9 or higher installed
+	MongoDB server running
+	
+Init guide:
+	
+	1.Clone the project folder
+	2. install all the packages using node package manager with the command : npm install
+	3. in the source folder run either assetsDbRun.js or sensorDbRun.js depends on the database that you want to run.
+	3.1 run the database using the command: node (filename)
+	Now you are good to go!
+	
+
+Database methods:
+	
+	The general idea of the API is to communicate through HTTP requests to access all of its functions
+	Example request: the header :"0.0.0.0:3000/model?query=5&query2=yes" the body: a JSON object 
+	whereas the model identify which collection to access in the database and the queries used to give info
+	about the specific document in that collection, The body contains JSON format info that the DB can use
+	
+	
+	Assests Database:
+	--------------------------
+		This database has 4 models that you can use: device, user, patient, therapist.
+		Each one of them has 4 methods: create a new document, get a document, update a document, delete a document.
+		
+		!!For example purposes IP address and port will be written as 0.0.0.0:3000!!
+		!!The content of each field in the JSON object will be mentioned as: Name-type!!
+		!!for example number-int will be written as {"number": "15"} in the JSON format!!
+		!!JSON names are case sensitive!!
+		
+		Device:
+		
+			Device document fields:
+				createdAt - date
+				updatedAt - date
+				uuid - string
+				deviceName - string
+				firmwaveVersion - string
+				osVersion - string
+				deviceType string
+		
+			Create a device-
+			HTTP request type: POST
+			header address: 0.0.0.0:3000:/device
+			body content:*Required fields!* uuid-string, deviceName-string, firmwareVersion-string, osVersion-string, deviceType-string
+			result: new device info
+			
+			Get a device-
+			HTTP request type: GET
+			header address: 0.0.0.0:3000:/device?uuid=(targetUuid)
+			body content: none
+			result: target device info
+			
+			Update a device-
+			HTTP request type: PATCH
+			header address: 0.0.0.0:3000:/device?uuid=(targetUuid)
+			body content: *insert fields that you want to update as the body*
+			result: message that the device was updated
+			
+			Delete a device-
+			HTTP request type: DELETE
+			header address: 0.0.0.0:3000:/device?uuid=(targetUuid)
+			body content: none
+			result: message that the device was deleted
+		
+		User:
+		
+			User document fields:
+				createdAt - date
+				updatedAt - date
+				email -  string
+				password - string
+				userRole - string
+				userId - string
+		
+			Create a user-
+			HTTP request type: POST
+			header address: 0.0.0.0:3000:/user
+			body content:*Required fields!* email-string, password-string, userRole-string, userId-string
+			result: new user info
+			
+			Get a user-
+			HTTP request type: GET
+			header address: 0.0.0.0:3000:/user?userId=(targetUserId)
+			body content: none
+			result: target user info
+			
+			Update a user-
+			HTTP request type: PATCH
+			header address: 0.0.0.0:3000:/user?userId=(targetUserId)
+			body content: *insert fields that you want to update as the body*
+			result: message that the user was updated
+			
+			Delete a user-
+			HTTP request type: DELETE
+			header address: 0.0.0.0:3000:/user?userId=(targetUserId)
+			body content: none
+			result: message that the user was deleted
+		
+		Patient:
+		
+			Patient document fields:
+				createdAt - date
+				updatedAt - date
+				firstName - string
+				lastName - string
+				age - number
+				gender - string
+				devices - array
+				therapySessions - array
+				userId - string
+				
+		
+			Create a patient-
+			HTTP request type: POST
+			header address: 0.0.0.0:3000:/patient
+			body content:*Required fields!* firstName-string, lastName-string, age-number, gender-string, userId
+			result: new patient info
+			
+			Get a patient-
+			HTTP request type: GET
+			header address: 0.0.0.0:3000:/patient?userId=(targetUserId)
+			body content: none
+			result: target patient info
+			
+			Update a patient-
+			HTTP request type: PATCH
+			header address: 0.0.0.0:3000:/patient?userId=(targetUserId)
+			body content: *insert fields that you want to update as the body*
+			result: message that the patient was updated
+			
+			Delete a patient-
+			HTTP request type: DELETE
+			header address: 0.0.0.0:3000:/patient?userId=(targetUserId)
+			body content: none
+			result: message that the patient was deleted
+			
+		Therapist:
+		
+			Therapist document fields:
+				createdAt - date
+				updatedAt - date
+				firstName - string
+				lastName - string
+				age - number
+				gender - string
+				skills - array
+				patients - array
+				userId - string
+				
+		
+			Create a therapist-
+			HTTP request type: POST
+			header address: 0.0.0.0:3000:/therapist
+			body content:*Required fields!* firstName-string, lastName-string, age-number, gender-string, userId-string, skills-array
+			result: new therapist info
+			
+			Get a therapist-
+			HTTP request type: GET
+			header address: 0.0.0.0:3000:/therapist?userId=(targetUserId)
+			body content: none
+			result: target therapist info
+			
+			Update a therapist-
+			HTTP request type: PATCH
+			header address: 0.0.0.0:3000:/therapist?userId=(targetUserId)
+			body content: *insert fields that you want to update as the body*
+			result: message that the therapist was updated
+			
+			Delete a therapist-
+			HTTP request type: DELETE
+			header address: 0.0.0.0:3000:/therapist?userId=(targetUserId)
+			body content: none
+			result: message that the therapist was deleted
+	
+	SensorData Database:
+	--------------------------
+		This database has 1 model that you can use: sensorData
+		It has 2 methods: create a document, fetch all documents of a user
+		
+		SensorData:
+			
+			SensorData document fields:
+				userId - string
+				timeStamp - date
+				deviceUuid - string
+				sensorName - string
+				sensorValue - string
+			
+			Create a sensorData-
+			HTTP request type: POST
+			header address: 0.0.0.0:3000:/sensorData
+			body content:*Required fields!* userId-string deviceUuid-string sensorName-string sensorValue-string
+			result: new sensorData info
+			
+			Get all sensorData documents belongs to a user within request time scope-
+			*scope has 3 type of parameters: daily, weekly, monthly*
+			*The format for daily date is: year-month-day(example : 2022-10-20)*
+			*The format for weekly date is: year-month-day-year-month-day*(example : 2022-10-20-2022-10-26)*
+			*The format for monthly date is: year-month(example: 2022-10)*
+			HTTP request type: GET
+			header address: 0.0.0.0:3000:/userId=(targetUserId)&scope=(dates scope)&date=(the dates you target)
+			body content: none
+			result: target sensorData info

@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  font-family: var(--main-font-family);
+  // font-size: 20px;
+
+  .selected-date {
+    display: flex;
+    gap: 5px;
+  }
+
+  .time-range-selection {
+    display: flex;
+    gap: 5px;
+
+    font-size: 1em;
+
+    li {
+      border: 1px solid rgb(223, 223, 223);
+      border-radius: 17px;
+      padding: 10px 20px;
+      background-color: var(--rare-color);
+      mat-date-range-input {
+        // display: none;
+        input {
+          display: none;
+        }
+      }
+    }
+  }
+}

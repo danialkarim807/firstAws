@@ -1,0 +1,52 @@
+<div class="main-container">
+  <div class="info container">
+    <app-personal-info></app-personal-info>
+  </div>
+  <div class="search-container">
+    <app-search-bar></app-search-bar>
+  </div>
+  <div class="time-frame-container">
+    <app-time-range></app-time-range>
+  </div>
+  <div *ngIf="questionnaires" class="questionnair-container">
+    <!-- TODO: inset todo-btn to the Todo-btn-list component -->
+    <!-- TODO: inset todo-icon class in to the Todo-btn component -->
+    <span class="material-symbols-outlined todo-icon"> edit_square </span>
+    <div class="questionnair-inner-container">
+      <app-questionnair-todo-btn
+        class="clickable"
+        [routerLink]="['/questionnaire', q.name]"
+        *ngFor="let q of questionnaires.data"
+        [name]="q.name"
+      ></app-questionnair-todo-btn>
+    </div>
+  </div>
+  <div class="container-list-container">
+    <div class="lists-container">
+      <app-card-list
+        *ngIf="sensorCards"
+        title="Sensor Data"
+        type="'sensor'"
+        [cards]="sensorCards"
+      ></app-card-list>
+    </div>
+    <div class="lists-container">
+      <app-card-list
+        *ngIf="computedCards"
+        title="Calculated Scores & Measurments"
+        type="'calculated'"
+        [cards]="computedCards"
+      ></app-card-list>
+    </div>
+    <div class="lists-container" *ngIf="hasCompletedQuestionnaire">
+      <app-card-list
+        title="Completed Questionnaires"
+        type="'questionnaire'"
+        [cards]="questionnairesData"
+      ></app-card-list>
+    </div>
+  </div>
+  <!-- <div class="container-list-container container-completed-questionnairs">
+    <app-completed-questionnair-list></app-completed-questionnair-list>
+  </div> -->
+</div>

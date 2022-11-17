@@ -1,0 +1,40 @@
+.search-bar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary-complementry-color);
+  display: flex;
+  font-size: 30px;
+  gap: 20px;
+  padding: 0 20px;
+  justify-content: end;
+  align-items: center;
+  border-radius: 30px;
+  .icon {
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+      text-align: center;
+      line-height: 40px;
+      color: var(--main-color);
+    }
+  }
+
+  .divider {
+    height: 30px;
+    border: 1px solid var(--secondary-color);
+  }
+
+  input {
+    flex: 1;
+    // border: 1px solid black;
+    background-color: transparent;
+    padding: 10px 0 10px 15px;
+    color: var(--secondary-color);
+    // opacity: 0.5;
+    font-size: 14px;
+    font-family: var(--main-font-family);
+  }
+  input:focus {
+    // background-color: var(--main-color);
+    opacity: 0.5;
+  }
+}

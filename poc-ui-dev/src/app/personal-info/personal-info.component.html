@@ -1,0 +1,17 @@
+<div class="container" *ngIf="person">
+  <img
+    *ngIf="person.userInfo.imageUrl"
+    width="40"
+    [src]="person.userInfo.imageUrl"
+    alt="personal name"
+    class="clickable"
+  />
+  <ul class="info">
+    <ng-container *ngFor="let i of person.personalInfo | keyvalue">
+      <li *ngIf="i.key !== 'imageUrl'">
+        <span class="lable">{{ i.key | titlecase }}: </span>
+        <span class="value">{{ i.value | personalInfo: i.key }}</span>
+      </li>
+    </ng-container>
+  </ul>
+</div>

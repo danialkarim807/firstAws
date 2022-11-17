@@ -1,0 +1,24 @@
+h2 {
+  text-align: center;
+  margin: 20px 0;
+}
+ul {
+  li {
+    min-width: 450px;
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 5px;
+    background-color: var(--secondary-complementry-color);
+    border-radius: 5px;
+    padding: 10px 0;
+    font-family: var(--main-bold-font-family);
+  }
+  li:hover {
+    background-color: #cfccc7;
+  }
+  li:active {
+    background-color: var(--accent-color);
+    color: var(--secondary-complementry-color);
+  }
+}

@@ -1,0 +1,114 @@
+:host {
+  // flex-basis: 8%;
+  flex: 1;
+}
+@media screen and (max-width: 1771px) {
+  :host {
+    flex-basis: 20%;
+  }
+}
+@media screen and (max-width: 1400px) {
+  :host {
+    flex-basis: 24%;
+  }
+}
+@media screen and (max-width: 941px) {
+  :host {
+    flex-basis: 33%;
+  }
+}
+@media screen and (max-width: 700px) {
+  :host {
+    flex-basis: 45%;
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: nowrap;
+  height: 240px;
+  font-family: var(--main-font-family);
+
+  // width: 200px;
+  // max-height: 150px;
+  // width: 100%;
+  // min-width: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid rgb(245, 245, 245);
+  background-color: var(--secondary-complementry-color);
+  box-shadow: 3px 6px 14px 0 rgb(0 0 0 / 10%);
+  .top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > h3 {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .measurement-info-button {
+      border: 1px solid #8b8b8b;
+      min-width: 20px;
+      min-height: 20px;
+      max-width: 20px;
+      max-height: 20px;
+      box-shadow: 0px 0px 2px rgb(145, 145, 145);
+      font-weight: bold;
+      border-radius: 50%;
+      font-size: 14px;
+      text-align: center;
+      line-height: 20px;
+    }
+  }
+  .middle-container {
+    display: flex;
+    justify-content: flex-end;
+    // .illustration {
+    // }
+    .material-symbols-outlined {
+      color: var(--accent-color);
+      border-radius: 2px;
+    }
+    .material-symbols-outlined:hover {
+      background-color: rgb(179, 179, 179);
+    }
+    .material-symbols-outlined:active {
+      background-color: rgb(138, 138, 138);
+    }
+  }
+
+  .current-measurement {
+    .measurement {
+      font-size: 25px;
+      span {
+        font-size: 16px;
+      }
+    }
+    .standard-description-word {
+      font-size: 18px;
+      font-family: var(--main-bold-font-family);
+      // font-weight: bold;
+      color: var(--good-color);
+      // color: #8ec98e;
+    }
+  }
+
+  .bottom-container {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    .card-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .data {
+      text-align: end;
+    }
+    .statistic {
+      font-weight: 500;
+    }
+  }
+}

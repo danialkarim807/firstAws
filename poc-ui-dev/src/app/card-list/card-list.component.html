@@ -1,0 +1,33 @@
+<h2 class="h2-title" *ngIf="title">{{ title }}</h2>
+<div
+  [ngClass]="type == 'sensor' ? 'streach-container' : 'container'"
+  [ngSwitch]="type"
+>
+  <ng-template ngSwitchCase="'sensor'">
+    <app-info-card
+      [card]="card"
+      [numberOfCards]="cards.length"
+      *ngFor="let card of cards"
+    ></app-info-card>
+  </ng-template>
+  <ng-template ngSwitchCase="'calculated'">
+    <app-info-card
+      [card]="card"
+      *ngFor="let card of cards"
+      style="max-width: 300px; justify-content: start"
+    ></app-info-card>
+  </ng-template>
+  <ng-template ngSwitchCase="'questionnaire'">
+    <app-completed-questionnaire
+      *ngFor="let c of cards"
+      [card]="card"
+      [numberOfCards]="cards.length"
+    ></app-completed-questionnaire>
+  </ng-template>
+  <!-- <div *ngFor="let card of cards">
+    <app-info-card *ngIf="card.bottom" [card]="card"></app-info-card>
+  </div>
+  <div *ngFor="let card of cards">
+    <app-info-card *ngIf="card.bottom" [card]="card"></app-info-card>
+  </div> -->
+</div>

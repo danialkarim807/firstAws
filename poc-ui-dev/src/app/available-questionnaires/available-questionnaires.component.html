@@ -1,0 +1,13 @@
+<ul>
+  <li
+    *ngFor="let questionnaire of questionnaireList"
+    class="clickable"
+    [routerLink]="['/questionnaire', questionnaire.name]"
+    [state]="{ id: questionnaire.questionnaireId }"
+  >
+    <div class="questionnaire-list-text">{{ questionnaire.name }}</div>
+    <div class="questionnaire-list-text questionnaire-list-text-end">
+      <span>| Last Filled: </span><span>{{ questionnaire.lastFilled }}</span>
+    </div>
+  </li>
+</ul>

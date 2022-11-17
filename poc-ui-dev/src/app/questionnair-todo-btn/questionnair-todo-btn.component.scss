@@ -1,0 +1,26 @@
+:host {
+  width: 25%;
+  max-width: 180px;
+}
+span {
+  font-family: var(--main-font-family);
+  color: var(--secondary-complementry-color);
+  background-color: var(--accent-color);
+  font-size: 1em;
+
+  padding: 10px;
+  border-radius: 15px;
+  // max-width: 150px;
+  // min-width: 80px;
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+}
+
+span:hover {
+  background-color: #4b384d;
+}
+
+span:active {
+  background-color: #3c2d3d;
+}

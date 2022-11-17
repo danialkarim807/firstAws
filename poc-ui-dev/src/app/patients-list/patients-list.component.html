@@ -1,0 +1,6 @@
+<h2 class="h2-title">Patients List</h2>
+<ul>
+  <li class="clickable" *ngFor="let p of patients" (click)="setPatientData(p)">
+    {{ p }}
+  </li>
+</ul>
